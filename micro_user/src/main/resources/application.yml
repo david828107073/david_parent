@@ -1,0 +1,25 @@
+server:
+  port: 9004
+spring: # 服務名稱，暫時沒有用，SpringCloud服務調用才看得出效果
+  application:
+    name: microservice-user
+  datasource:
+    username: david
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF8&serverTimezone=UTC&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true #是否自動建表
+    database: mysql #JPA連接資料庫類型
+#配置Eureka 客戶端註冊訊息
+eureka:
+  client:
+    register-with-eureka: true #作為客戶端需要註冊到Eureka
+    fetch-registry: true #作為客戶端需要從Eureka獲取註冊訊息
+    service-url: #客戶端註冊地址
+      defaultZone: http://127.0.0.1:8888/eureka,http://127.0.0.1:9999/eureka
+  instance:
+    prefer-ip-address: true #優先使用該服務的IP地址註冊到Eureka，在實際生產環境建議改為true
